@@ -1,6 +1,6 @@
 # Entities Index
 
-Read `../index.md` first, then open only the smallest set of entity pages needed for the current task.
+Read `../index.md` and `../NOW.md` first, then open only the smallest set of entity pages needed for the current task.
 
 - [ai_creator_website_prompting.md](./ai_creator_website_prompting.md) - Prompt strategy for AI site-builders and coding agents.
 - [ai_creator_website_tools_and_stack.md](./ai_creator_website_tools_and_stack.md) - AI Website-Builder Landscape and Open-Source Stacks.
@@ -18,15 +18,12 @@ Read `../index.md` first, then open only the smallest set of entity pages needed
 - [ingestion_workflow.md](./ingestion_workflow.md) - End-to-end raw->entity->registry walkthrough with worked `ADD`/`UPDATE`/`NOOP` examples, provenance standards, pitfalls, and pre/post-ingest checklists.
 - [intent_routing_architecture.md](./intent_routing_architecture.md) - Orchestrator flow for intent, decomposition, tool use, and neutral specialist assignment.
 - [jit_tool_loading.md](./jit_tool_loading.md) - Context-engineering rules for JIT tool/schema retrieval and unload-after-use execution.
-- [multi_agent_coordination.md](./multi_agent_coordination.md) - Operational guide: record catalog, normal/blocked/handoff/recovery flows, staleness rules, shared-action-layer principle, and pre-write checklist. Canonical contract still lives in `../schema/multi_agent_coordination.md`.
 - [persona_orchestrator_specialist.md](./persona_orchestrator_specialist.md) - Orchestrator-to-specialist role boundaries and interchangeable-agent rules.
 - [progressive_disclosure_ui.md](./progressive_disclosure_ui.md) - User-facing summarization and detail-on-demand rules.
 - [recursive_criticize_improve.md](./recursive_criticize_improve.md) - Explicit critique-refine chains for constraint-heavy reasoning and self-healing drafts.
 - [shaughnessy_graphic_designer.md](./shaughnessy_graphic_designer.md) - Shaughnessy's professional/creative boundary: master the rote work to earn the right to unconventional design moves.
-- [specialist_playbook.md](./specialist_playbook.md) - Operator quickstart: startup flow, CLI cheatsheet, symptom-to-action troubleshooting, VERIFY evidence standards, slice-selection heuristics, and handoff template.
+- [specialist_playbook.md](./specialist_playbook.md) - Specialist quickstart: startup flow, slice-selection heuristics, VERIFY evidence standards, report shape.
 - [spl_declarative_context.md](./spl_declarative_context.md) - Budgeted `BUDGET -> SELECT -> GENERATE` workflow for context assembly.
-- [tui_framework_evaluation.md](./tui_framework_evaluation.md) - Framework recommendation and implementation guidance for the KYOTA Textual dashboard.
-- [tui_operator_guide.md](./tui_operator_guide.md) - Operator-facing TUI reference: launch prerequisites, panel layout, keybindings, writable action modals, TUI-vs-CLI selection, and v2 limitations.
 - [vignelli_canon.md](./vignelli_canon.md) - Vignelli's foundational aesthetic discipline (semantics, syntactics, pragmatics, discipline, timelessness) for KYOTA interface philosophy.
 - [materiality_and_dematerialization.md](./materiality_and_dematerialization.md) - UX strategies countering digital interface dematerialization through packaging and tactile engagement.
 - [typographic_rhythm_and_feeling.md](./typographic_rhythm_and_feeling.md) - Treating typography as active structural objects representing emotion and rhythm rather than passive text.

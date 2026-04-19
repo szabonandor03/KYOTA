@@ -61,7 +61,7 @@ For agent-authored code in an OSS stack, the prompt structure is:
    "Run the dev server, take a screenshot of `/archive`, and compare it to the screenshot at `references/canary_yellow.png`. Tell me three specific places where ours drifts from the reference, and propose the smallest possible code change for each." This is the agent-equivalent of the deterministic-reflector pattern in [`execution_patterns.md`](./execution_patterns.md).
 
 5. **Snapshot tests as design lock.**
-   For sites that need to stay visually stable across edits, add Playwright screenshot tests for the canonical pages. Future agent edits that change pixels in unintended ways fail the test. KYOTA already uses this pattern for the TUI dashboard ([`tui_operator_guide.md`](./tui_operator_guide.md), `tests/__snapshots__/test_tui/*.svg`); the same pattern works for web.
+   For sites that need to stay visually stable across edits, add Playwright screenshot tests for the canonical pages. Future agent edits that change pixels in unintended ways fail the test. Pair each canonical page with a reference screenshot committed to the repo and a CI step that diffs against it.
 
 ### Worked Example 1 — Third-Party Builder Prompt (Lovable / v0 / Bolt)
 

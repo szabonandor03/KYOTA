@@ -70,7 +70,7 @@ Eight days. Nothing public during this window — no social posts referencing th
 - Decide the 5 adjacency tracks for the Day 11–12 playlist.
 - Photograph handwritten lyric fragments.
 
-**Baseline metrics snapshot** — operator records these in a HISTORY record in [`../log.md`](../log.md) on or around 2026-04-25:
+**Baseline metrics snapshot** — operator records these in `NOW.md` under **Recent decisions** on or around 2026-04-25:
 - FS-003 total streams (Spotify for Artists).
 - FS-003 weekly listeners.
 - FIDESZ SAPKA IG follower count.
@@ -129,11 +129,11 @@ If any deliverable isn't ready by 2026-04-25, slip Day 1 rather than launch half
 
 ## Verification — How We Tell It's Working
 
-**Baseline snapshot before Day 1** — operator records these as a HISTORY record in [`../log.md`](../log.md).
+**Baseline snapshot before Day 1** — operator records these in `NOW.md` under **Recent decisions**.
 
 **Day 7 (2026-05-02) mid-check — gates the paid boost.** If the Catalog Card doesn't hit ≥2× the group's normal organic engagement within 12 hours, pause. Read comments/signals. Options: boost as planned anyway, shift budget to Day 10's caption, or hold the spend entirely for FS-004.
 
-**Day 15 (2026-05-10) post-mortem.** Compare to baseline. Log a HISTORY record. If uplift is real, update this entity to reflect actual learnings and keep it as the template FS-004 inherits. If flat, capture *why* — that's the more valuable record.
+**Day 15 (2026-05-10) post-mortem.** Compare to baseline. Record the numbers and learnings in `NOW.md` **Recent decisions**. If uplift is real, update this entity to reflect actual learnings and keep it as the template FS-004 inherits. If flat, capture *why* — that's the more valuable record.
 
 Realistic success thresholds for a 3-person group with a small starting audience:
 - **Primary:** +25% or better FS-003 weekly listeners during the 14-day window vs. baseline.
@@ -163,4 +163,4 @@ The next specialist picks these up with the operator before producing any drafts
 
 ## Handoff Note
 
-Next specialist: open the repo, run the KYOTA startup order (see [`../CLAUDE.md`](../CLAUDE.md)), read [`../log.md`](../log.md), find the 2026-04-18 HISTORY record pointing here, read this file and [operator_profile.md](./operator_profile.md), then resume at **Open Questions**. Prep window started 2026-04-18; as long as open questions resolve and assets land before 2026-04-25, Day 1 on 2026-04-26 holds.
+Next specialist: open the repo, run the KYOTA startup order (see [`../CLAUDE.md`](../CLAUDE.md)), read [`../NOW.md`](../NOW.md), then this file and [operator_profile.md](./operator_profile.md), then resume at **Open Questions**. Prep window started 2026-04-18; as long as open questions resolve and assets land before 2026-04-25, Day 1 on 2026-04-26 holds.

@@ -1,2 +1,0 @@
-[console_scripts]
-kyota = kyota.cli:main

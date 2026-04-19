@@ -1,8 +1,0 @@
-
-[test]
-pytest>=8.0
-textual>=8.2.0
-pytest-textual-snapshot>=1.1.0
-
-[tui]
-textual>=8.2.0

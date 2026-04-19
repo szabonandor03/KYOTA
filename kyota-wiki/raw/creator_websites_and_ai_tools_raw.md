@@ -4,7 +4,7 @@
 - **Source type:** Gemini Deep Research (GDS) session report.
 - **Run date:** 2026-04-18.
 - **Operator:** Nandi.
-- **Prompt:** See `kyota-wiki/log.md` 2026-04-18 HISTORY record for the GDS prompt; the prompt asked for an 8-section deep-research report covering (a) AI-assisted website-building tools (commercial + free/OSS), (b) design canon and anti-patterns for well-designed creator sites, and (c) open-source stacks an AI coding agent (Claude Code) can drive end-to-end.
+- **Prompt:** 8-section deep-research report covering (a) AI-assisted website-building tools (commercial + free/OSS), (b) design canon and anti-patterns for well-designed creator sites, and (c) open-source stacks an AI coding agent (Claude Code) can drive end-to-end. Full prompt text preserved in git history for the 2026-04-18 ingestion commit.
 - **Ingestion operation:** ADD — no prior entity covers AI website-building tools, agent-drivable creator-web stacks, or web-specific creator-design canon. Existing canon entities (`vignelli_canon`, `grid_systems`, `design_form_chaos`, `shaughnessy_graphic_designer`, `materiality_and_dematerialization`, `typographic_rhythm_and_feeling`, `premium_dx_philosophies`) cover ancestral / non-web design principles; this report's contribution is the web-application layer plus tooling.
 
 ## Sourcing Notes (Read Before Acting)
