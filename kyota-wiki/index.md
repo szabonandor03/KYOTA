@@ -1,25 +1,26 @@
-# KYOTA Startup Manifest
+# KYOTA Startup
 
-This file is the lean startup surface for every specialist agent. Use it to recover the workspace contract, then open only the registries, prompt schemas, and rules required by the current task.
+Lean startup surface. Read this, then `NOW.md`, then open only what the task needs.
 
-## Startup Order
-1. Read [`log.md`](./log.md) for recent `HISTORY` records and any active coordination records.
-2. Set `BUDGET` to `tight`, `standard`, or `large`.
-3. `SELECT` only the needed schema, prompt schema, registry, entity, and raw sources.
-4. Decide whether the task needs direct execution, explicit RCI, a deterministic reflector, or a formal verification gate.
-5. `GENERATE` only after selection is complete.
+## Startup order
+1. Read [`NOW.md`](./NOW.md) — current state, blockers, next actions.
+2. Decide `BUDGET`: `tight`, `standard`, or `large`.
+3. `SELECT` only the entities, prompt schemas, and raw sources the task needs.
+4. `GENERATE` after selection is complete.
 
-## Canonical State
-- [`log.md`](./log.md) - Current state ledger, history, and fallback mailbox.
-- [`schema/maintenance_protocol.md`](./schema/maintenance_protocol.md) - Canonical ingest, query, lint, and SPL workflow.
-- [`schema/multi_agent_coordination.md`](./schema/multi_agent_coordination.md) - Canonical claim, handoff, verify, and release contract.
-- [`schema/kyota_agent_schemas.md`](./schema/kyota_agent_schemas.md) - Modular prompt library for JIT tool loading, explicit RCI, deterministic reflectors, and formal verification gates.
-- [`schema/research_protocol.md`](./schema/research_protocol.md) - Source-of-truth and acquisition rules.
+## Canonical files
+- [`NOW.md`](./NOW.md) — current state (replaces the old append-only `log.md`).
+- [`schema/kyota_agent_schemas.md`](./schema/kyota_agent_schemas.md) — modular prompt library for JIT tool loading, RCI, deterministic reflectors, formal verification gates.
+- [`schema/research_protocol.md`](./schema/research_protocol.md) — source-of-truth and ingestion rules.
 
-## Detailed Registries
-- [`entities/specialist_playbook.md`](./entities/specialist_playbook.md) - First-open operator playbook: startup flow, CLI cheatsheet, troubleshooting, VERIFY evidence standards, and slice-selection heuristics.
-- [`entities/index.md`](./entities/index.md) - Detailed entity map for operational knowledge.
-- [`raw/index.md`](./raw/index.md) - Raw-source registry for provenance and source verification.
-- [`bin/kyota`](./bin/kyota) - Workspace CLI for `HISTORY`, `CLAIM`, `BLOCKER`, `UNBLOCK`, `HANDOFF`, `VERIFY`, `RELEASE`, `status`, and `lint`.
-- [`CODEX.md`](./CODEX.md) - Specialist entry contract for Codex.
-- [`CLAUDE.md`](./CLAUDE.md) - Specialist entry contract for Claude.
+## Registries
+- [`entities/index.md`](./entities/index.md) — operational knowledge entities.
+- [`raw/index.md`](./raw/index.md) — raw source registry for provenance.
+- [`CLAUDE.md`](./CLAUDE.md) / [`CODEX.md`](./CODEX.md) — specialist entry contracts.
+
+## Writing discipline
+- Treat `/raw/` as immutable once stored.
+- Treat `/schema/` as the only normative rules layer.
+- Prefer targeted entity updates over duplicating guidance.
+- Load prompt fragments just in time; unload after the task ends.
+- Update `NOW.md` in place when current state changes — do not append a new record below the old one.

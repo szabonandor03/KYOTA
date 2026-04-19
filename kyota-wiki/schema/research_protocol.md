@@ -7,7 +7,7 @@ This document defines what qualifies as valid source-of-truth material for the K
 1. Prefer primary sources over summaries, commentary, or derivative blog posts.
 2. Preserve raw source artifacts in `/raw/` whenever possible so later agents can audit the original material.
 3. Synthesize source material into `/entities/` only after the source has been read directly.
-4. Record every ingestion or synthesis action in `../log.md` immediately after the change is made.
+4. Record every ingestion or synthesis action in the git commit message, and add a one-line note to `../NOW.md` **Recent decisions** if the change alters active work or guidance.
 
 ## Primary Targets
 - Official documentation from model vendors is the default target for best-practice guidance.

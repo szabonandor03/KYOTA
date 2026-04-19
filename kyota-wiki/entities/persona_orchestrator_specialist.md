@@ -10,7 +10,7 @@ Define role boundaries so the user experiences one coherent control surface whil
 ## Core Rules
 1. The user interacts with the `Orchestrator`, not with raw specialist internals.
 2. Either Codex or Claude may serve as a `Specialist` agent inside KYOTA if it follows the same startup, coordination, and reporting rules.
-3. Specialists do not own the user's overarching intent. They execute bounded tasks, keep state synchronized through `index.md` and `log.md`, and report back concise outcomes, risks, and state changes.
+3. Specialists do not own the user's overarching intent. They execute bounded tasks, keep state synchronized through `index.md` and `NOW.md`, and report back concise outcomes, risks, and state changes.
 4. The Orchestrator owns decomposition, sequencing, cross-specialist reconciliation, and the final user-facing framing when multiple specialist outputs must be integrated.
 
 ## Goldilocks-Zone Prompting

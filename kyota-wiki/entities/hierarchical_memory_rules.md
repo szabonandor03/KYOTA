@@ -17,13 +17,13 @@ Convert hierarchical-memory research into operational rules for how specialist a
    - `DELETE` when a claim is invalid, duplicated, or no longer suitable for active use.
    - `NOOP` when new material does not justify a knowledge-base change.
 5. `UPDATE` does not mean erasing history blindly. Preserve the previous claim long enough to explain what changed, why it changed, and which source justified the revision.
-6. `DELETE` means removing a memory from active guidance while leaving an audit trail in `log.md`. Do not destroy evidence in `/raw/`.
+6. `DELETE` means removing a memory from active guidance. The audit trail lives in git history (commit messages) and optionally a one-line note in `NOW.md` **Recent decisions**. Do not destroy evidence in `/raw/`.
 7. When a source contains contradictions, prefer consolidation over replacement. Convert conflicting statements into a resolved rule with explicit caveats instead of flattening them into a single unsupported claim.
 8. Retrieve memory with local context, not isolated fragments. When an entity or log entry appears relevant, inspect its neighboring notes or adjacent history so the "nucleus" fact is interpreted with surrounding context.
 
 ## KYOTA Operating Pattern
 - Working memory: the current task context and open files.
-- Short-term memory: the recent entries in `log.md` and the few entity pages selected for the task.
+- Short-term memory: `NOW.md` and the few entity pages selected for the task.
 - Episodic memory: immutable source files stored in `/raw/`.
 - Semantic memory: distilled operating knowledge in `/entities/`.
 - Profile memory: any future durable preferences or agent-specific conventions, stored explicitly rather than inferred repeatedly.

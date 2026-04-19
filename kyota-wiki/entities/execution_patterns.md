@@ -24,7 +24,7 @@ Help an agent pick the smallest fitting execution loop for a task - direct execu
 Walk this top-down; the first matching row wins. Everything above "direct execution" is a reason to escalate.
 
 1. **Does the task propose a tool call whose failure is costly or irreversible** (file deletion, external API write, money movement, privileged action)? -> **Formal verification gate**. Pair with explicit invariant formulas and a `UNSAT` correction path.
-2. **Can an external tool produce deterministic evidence about the draft** (compiler, `pytest`, `kyota lint`, search hit count, type checker, formal solver)? -> **Deterministic reflector**. Use the tool output as the correction signal, not free-form self-critique.
+2. **Can an external tool produce deterministic evidence about the draft** (compiler, `pytest`, project build, search hit count, type checker, formal solver)? -> **Deterministic reflector**. Use the tool output as the correction signal, not free-form self-critique.
 3. **Does the task have rigid invariants, formatting constraints, or policy rules that a single pass tends to violate** (router parity, schema shape, lifecycle rules, style contracts)? -> **Explicit RCI**. Keep the critique phase separate from the refinement phase.
 4. **Otherwise** -> **Direct execution**. Do not manufacture loops for tasks that do not need them.
 
@@ -35,13 +35,13 @@ Concrete mappings for the kinds of work this workspace sees:
 
 | Task | Pattern | Why |
 | --- | --- | --- |
-| One-line entity registry update | Direct execution | Low risk; `kyota lint` afterward is cheap validation, not a loop. |
+| One-line entity registry update | Direct execution | Low risk; registry-vs-disk diff afterward is cheap validation, not a loop. |
 | New entity page synthesizing a raw source | Explicit RCI (critique against provenance + memory-operation rules), then direct merge | Rigid structure (Source Basis, provenance, atomic claims). |
-| Code edit where `pytest` exists | Deterministic reflector with `pytest` as verifier | External tool produces deterministic pass/fail. |
-| Schema / contract change to the coordination layer | Deterministic reflector with `kyota lint` + a disposable probe cycle | Lifecycle invariants are testable. |
-| Proposed `kyota recover` on a stale scope | Formal verification gate (agent identity, stale-marker presence, scope exactness) | Irreversible cleanup of someone else's claim. |
+| Code edit where `pytest` or project build exists | Deterministic reflector with the test / build as verifier | External tool produces deterministic pass/fail. |
+| UI / preview-server change | Deterministic reflector with the preview tool (screenshot, console logs, network) | Observable evidence grounds the release. |
+| Proposed destructive file operation (rm -rf, force-push, irreversible API call) | Formal verification gate (explicit invariants on target, scope, reversibility) | Irreversible actions need invariant-grounded pre-checks. |
 | Orchestrator routing decision | Direct execution | One-shot decision; no invariant verifier exists. |
-| Distillation of a large raw source into multiple entity pages | Explicit RCI per entity, then deterministic reflector on `kyota lint` | Rigid shape + external structural check. |
+| Distillation of a large raw source into multiple entity pages | Explicit RCI per entity, then deterministic reflector on a registry-diff check | Rigid shape + external structural check. |
 
 When a task is not on the table, fall back to the decision tree.
 
@@ -50,7 +50,7 @@ The `VERIFY` record should cite the evidence the chosen pattern actually generat
 
 | Pattern | Acceptable `VERIFY` evidence |
 | --- | --- |
-| Direct execution | Post-hoc checks such as `kyota lint`, `kyota doctor`, a targeted test, or a router parity diff - cited explicitly in the note. |
+| Direct execution | Post-hoc checks such as a targeted test, a project build, a registry diff, or a router parity diff — cited explicitly in the reply. |
 | Explicit RCI | Either `CRITIQUE_CLEAN` from the critique step or a summarized flaw list plus the refinement that resolved it, paired with a post-refinement structural check. |
 | Deterministic reflector | The verifier's output summary: pass/fail, counts, failing test names, lint errors cleared. Paste the signal, not the command noise. |
 | Formal verification gate | The `SAT` decision on the invariant formulas with the formulas themselves, or the `UNSAT` trace and the revised arguments that satisfied the gate. |
@@ -62,7 +62,7 @@ When a task triggers more than one row in the decision tree, compose instead of 
 
 1. **Constraint-heavy drafting with an external check**
    `explicit_rci_chain` -> `deterministic_reflector` -> final merge.
-   Use for: new entity pages with a `kyota lint` check afterward, schema edits that must satisfy both structural rules and lint.
+   Use for: new entity pages with a registry-diff check afterward, schema edits that must satisfy both structural rules and a post-hoc check.
 2. **Dynamic tool execution**
    `jit_skill_router` -> draft or propose tool call -> `formal_verification_gate` -> execute -> `deterministic_reflector`.
    Use for: any multi-step action where the tool set should not be resident and the call itself needs an invariant check.
@@ -70,7 +70,7 @@ When a task triggers more than one row in the decision tree, compose instead of 
    draft -> `deterministic_reflector` -> fix instructions -> `explicit_rci_chain` refinement -> re-verify.
    Use for: iterative code/doc fixes where the first reflector pass produces a concrete fix list.
 
-Keep the order explicit in the `HISTORY` note so the composition remains auditable.
+Keep the composition explicit in the reply and, when it captures a meaningful decision, in `NOW.md` so the reasoning stays auditable.
 
 ## Anti-Patterns
 - **RCI on a one-line change.** The critique overhead exceeds the error budget. Use direct execution plus a post-hoc check.
@@ -81,15 +81,14 @@ Keep the order explicit in the `HISTORY` note so the composition remains auditab
 - **Treating `VERIFY` as a rubber stamp when the pattern produced no evidence.** If no deterministic signal was generated, either choose a pattern that produces one or narrow the slice until a post-hoc check applies.
 
 ## Worked Example: New Entity Page with Structural Verifier
-Scenario: an agent is adding a new operational entity page that must follow the workspace's provenance structure and keep `kyota lint` clean.
+Scenario: an agent is adding a new operational entity page that must follow the workspace's provenance structure.
 
 1. **Select patterns.** Rigid structural constraints + external verifier -> composition recipe 1: `explicit_rci_chain` then `deterministic_reflector`.
 2. **Draft** the entity page from the selected sources.
 3. **Critique phase (`explicit_rci_chain` step 1).** Check the draft against: required sections, provenance rules, atomic claims, absence of duplicated normative rules. Produce either `CRITIQUE_CLEAN` or an explicit flaw list. Do not rewrite yet.
 4. **Refine** only if flaws exist.
-5. **Reflector phase (`deterministic_reflector`).** Run `kyota lint` and `kyota doctor`. Capture the pass/fail signal. If failing, feed the failure trace back as fix instructions and re-refine, not re-critique.
-6. **Release with evidence.** The `VERIFY` note cites both the RCI outcome (`CRITIQUE_CLEAN` or the flaws resolved) and the reflector outcome (`kyota lint` clean, `kyota doctor` clean).
-7. **History** names the composition used so future audits can reproduce the reasoning.
+5. **Reflector phase (`deterministic_reflector`).** Diff `/entities/` and `/raw/` against their index files to catch registry drift. If failing, feed the failure trace back as fix instructions and re-refine, not re-critique.
+6. **Report with evidence.** Cite both the RCI outcome (`CRITIQUE_CLEAN` or flaws resolved) and the reflector outcome (registry clean) in the reply.
 
 ## Budget and JIT Integration
 - Pattern choice happens inside the `BUDGET -> SELECT -> GENERATE` sequence from [`./spl_declarative_context.md`](./spl_declarative_context.md). Pick the pattern before you load prompt fragments or tool schemas.
@@ -98,7 +97,6 @@ Scenario: an agent is adding a new operational entity page that must follow the 
 
 ## Cross-References
 - Prompt fragments and module contracts: [`../schema/kyota_agent_schemas.md`](../schema/kyota_agent_schemas.md).
-- Operator startup, CLI cheatsheet, and overall VERIFY evidence standards: [`./specialist_playbook.md`](./specialist_playbook.md).
-- Record lifecycle, staleness, and the shared action layer: [`./multi_agent_coordination.md`](./multi_agent_coordination.md).
+- Specialist startup and overall VERIFY evidence standards: [`./specialist_playbook.md`](./specialist_playbook.md).
 - Ingestion-specific loop choices and pitfalls: [`./ingestion_workflow.md`](./ingestion_workflow.md).
 - Context-degradation rules that bound any composition: [`./context_degradation_safeguards.md`](./context_degradation_safeguards.md).

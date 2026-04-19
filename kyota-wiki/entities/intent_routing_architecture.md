@@ -31,7 +31,7 @@ Define how KYOTA should transform user intent into bounded specialist work witho
 - Route to any available specialist agent that can honor the current claims, selected budget, and required file scope.
 - Agent identity must not change startup sequence, state recovery, or coordination requirements.
 - Use multiple specialists only when file scopes or outputs can be separated cleanly.
-- When more than one specialist is involved, the Orchestrator should define handoff order explicitly and use `CLAIM`, `HANDOFF`, and `RELEASE` records in `log.md` to make ownership visible.
+- When more than one specialist is involved, the Orchestrator should define handoff order explicitly. Keep handoff notes inside `NOW.md` so the next agent can pick up cold. For concurrent multi-agent work (rare), use git branches + PRs rather than an in-repo coordination ledger.
 - Prefer the specialist with the smallest additional context load or the existing claim on the relevant files.
 
 ## Tool Discipline

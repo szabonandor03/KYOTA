@@ -14,7 +14,7 @@ Define how KYOTA should minimize user cognitive load while preserving full backe
 4. When detail is necessary, reveal it progressively: summary first, specifics second, raw artifacts last.
 
 ## Backend Retention Rules
-1. Store durable execution history in backend files such as `log.md` and entity pages, not in the main user-facing response.
+1. Store durable execution history in backend files such as `NOW.md`, entity pages, and git commit messages — not in the main user-facing response.
 2. Preserve machine-oriented detail in auditable files, structured notes, or dedicated logs so specialists can recover context without overwhelming the user.
 3. Do not paste raw tool payloads into shared user summaries when a concise explanation would preserve the meaning.
 
