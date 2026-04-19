@@ -1,0 +1,76 @@
+---
+import Base from "../layouts/Base.astro";
+import { videos } from "../data/videos";
+---
+
+<Base
+  title="FIDESZ SAPKA — videos"
+  description="archive / videos"
+  breadcrumb={[{ label: "videos", href: "" }]}
+>
+  <!-- Column headers -->
+  <div class="drive-columns">
+    <span>Name</span>
+    <span>Last modified</span>
+    <span>File size</span>
+  </div>
+
+  <!-- Video rows -->
+  {videos.map((v, i) => {
+    const name = v.file.split("/").pop();
+    return (
+      <div data-video-slug={name}>
+        <div class="drive-row video-row" data-video={name} id={`video-${i}`}>
+          <span class="drive-row__name">
+            <span class="drive-icon drive-icon--video">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z" fill="#ea4335"/></svg>
+            </span>
+            <span>{name}</span>
+          </span>
+          <span class="drive-row__meta">{v.date ?? "—"}</span>
+          <span class="drive-row__meta">—</span>
+        </div>
+        <div class="drive-video-preview" id={`vpreview-${i}`} style="display:none">
+          <video
+            controls
+            playsinline
+            preload="metadata"
+            poster={v.poster}
+          >
+            <source src={v.file} type="video/mp4" />
+          </video>
+        </div>
+      </div>
+    );
+  })}
+</Base>
+
+<script>
+  const rows = document.querySelectorAll<HTMLDivElement>(".video-row");
+
+  rows.forEach((row) => {
+    row.addEventListener("click", () => {
+      const name = row.dataset.video;
+      const parent = row.closest("[data-video-slug]");
+      const preview = parent?.querySelector<HTMLDivElement>(".drive-video-preview");
+      if (!preview) return;
+
+      const isOpen = preview.style.display !== "none";
+
+      // Close all previews
+      document.querySelectorAll<HTMLDivElement>(".drive-video-preview").forEach((p) => {
+        p.style.display = "none";
+        const v = p.querySelector<HTMLVideoElement>("video");
+        v?.pause();
+      });
+      document.querySelectorAll(".drive-row--selected").forEach((r) => {
+        r.classList.remove("drive-row--selected");
+      });
+
+      if (!isOpen) {
+        preview.style.display = "block";
+        row.classList.add("drive-row--selected");
+      }
+    });
+  });
+</script>

@@ -1,0 +1,139 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  breadcrumb?: { label: string; href: string }[];
+}
+
+const {
+  title = "FIDESZ SAPKA",
+  description = "archive",
+  breadcrumb = [],
+} = Astro.props;
+---
+
+<html lang="hu">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f3efe7" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body data-glitch="idle">
+    <header class="drive-toolbar">
+      <a href="/" class="drive-toolbar__logo" aria-label="Home">
+        <span class="drive-toolbar__mark" aria-hidden="true">
+          <img
+            src="/brand/drive-logo-source.jpeg"
+            alt=""
+            class="drive-toolbar__mark-layer drive-toolbar__mark-layer--base"
+          />
+          <img
+            src="/brand/drive-logo-source.jpeg"
+            alt=""
+            class="drive-toolbar__mark-layer drive-toolbar__mark-layer--red"
+          />
+          <img
+            src="/brand/drive-logo-source.jpeg"
+            alt=""
+            class="drive-toolbar__mark-layer drive-toolbar__mark-layer--blue"
+          />
+        </span>
+        <span class="drive-toolbar__titleblock">
+          <span class="drive-toolbar__eyebrow mono">shared archive</span>
+          <span class="glitch-text" data-text="FIDESZ SAPKA">FIDESZ SAPKA</span>
+        </span>
+      </a>
+      <div class="drive-toolbar__meta mono" aria-label="Archive metadata">
+        <span>updated 2026-04-19</span>
+        <span>unstable preview</span>
+      </div>
+    </header>
+
+    <div class="archive-shell">
+      <nav class="drive-breadcrumb" aria-label="Breadcrumb">
+        <a href="/">FIDESZ SAPKA</a>
+        {breadcrumb.map((crumb) => (
+          <>
+            <span class="drive-breadcrumb__sep">›</span>
+            {crumb.href ? (
+              <a href={crumb.href}>{crumb.label}</a>
+            ) : (
+              <span class="drive-breadcrumb__current">{crumb.label}</span>
+            )}
+          </>
+        ))}
+      </nav>
+
+      <main class="archive-main">
+        <slot />
+      </main>
+
+      <footer class="drive-footer">
+        <p style="margin:0">fidesz sapka</p>
+        <p style="margin:2px 0 0">
+          ig:
+          <a href="https://instagram.com/fideszsapka">@fideszsapka</a>
+          ·
+          <a href="mailto:szabonandor03@gmail.com">szabonandor03@gmail.com</a>
+        </p>
+      </footer>
+    </div>
+
+    <div class="glitch-noise" aria-hidden="true"></div>
+    <div class="glitch-scan" aria-hidden="true"></div>
+    <div class="glitch-slice" aria-hidden="true"></div>
+  </body>
+</html>
+
+<script is:inline>
+  const root = document.body;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!reduced) {
+    const states = [
+      { name: "scan", duration: [140, 220] },
+      { name: "split", duration: [120, 200] },
+      { name: "slice", duration: [150, 240] },
+    ];
+
+    let clearTimer;
+
+    const randomInRange = (min, max) => min + Math.random() * (max - min);
+
+    const fireGlitch = () => {
+      const state = states[Math.floor(Math.random() * states.length)];
+      const duration = randomInRange(state.duration[0], state.duration[1]);
+      root.dataset.glitch = state.name;
+      root.style.setProperty("--glitch-shift", `${randomInRange(-2.4, 2.4).toFixed(2)}px`);
+      root.style.setProperty("--glitch-slice-top", `${randomInRange(12, 78).toFixed(2)}%`);
+      root.style.setProperty("--glitch-slice-height", `${randomInRange(7, 15).toFixed(2)}%`);
+
+      window.clearTimeout(clearTimer);
+      clearTimer = window.setTimeout(() => {
+        root.dataset.glitch = "idle";
+      }, duration);
+    };
+
+    const schedule = () => {
+      window.setTimeout(() => {
+        fireGlitch();
+        schedule();
+      }, randomInRange(3800, 9800));
+    };
+
+    schedule();
+
+    document
+      .querySelectorAll(".drive-row, .drive-grid__item, .drive-toolbar__mark, .detail-card")
+      .forEach((node) => {
+        node.addEventListener("mouseenter", () => {
+          if (Math.random() < 0.18) fireGlitch();
+        });
+      });
+  }
+</script>

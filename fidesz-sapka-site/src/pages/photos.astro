@@ -1,0 +1,30 @@
+---
+import Base from "../layouts/Base.astro";
+import { photos } from "../data/photos";
+---
+
+<Base
+  title="FIDESZ SAPKA — photos"
+  description="archive / photos"
+  breadcrumb={[{ label: "photos", href: "" }]}
+>
+  <!-- Grid view (Drive's tile layout) -->
+  <div class="drive-grid">
+    {photos.map((p, i) => {
+      const name = p.file.split("/").pop();
+      return (
+        <figure class="drive-grid__item" id={`photo-${i}`}>
+          <a href={p.file} target="_blank" rel="noopener">
+            <img
+              src={p.file}
+              alt={p.caption ?? name ?? ""}
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+          <figcaption>{name}</figcaption>
+        </figure>
+      );
+    })}
+  </div>
+</Base>

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "FS-001",
+    "filename": "adide.mp3",
+    "title": "adide",
+    "type": "SINGLE",
+    "date": "2025-01-01",
+    "status": "RELEASED",
+    "audio": "/audio/adide.mp3",
+    "cover": "/img/adide.webp"
+  },
+  {
+    "id": "FS-002",
+    "filename": "kia.mp3",
+    "title": "kia",
+    "type": "SINGLE",
+    "date": "2025-01-01",
+    "status": "RELEASED",
+    "audio": "/audio/kia.mp3",
+    "cover": "/img/kia.webp"
+  },
+  {
+    "id": "FS-003",
+    "filename": "kiraly.mp3",
+    "title": "király",
+    "type": "SINGLE",
+    "date": "2025-01-01",
+    "status": "RELEASED",
+    "audio": "/audio/kiraly.mp3",
+    "cover": "/img/kiraly.webp"
+  },
+  {
+    "id": "FS-004",
+    "filename": "frequency.mp3",
+    "title": "frequency",
+    "type": "SINGLE",
+    "date": "2026-04-18",
+    "status": "PENDING_RELEASE",
+    "audio": null,
+    "cover": null
+  }
+]

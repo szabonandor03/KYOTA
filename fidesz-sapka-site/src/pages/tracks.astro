@@ -1,0 +1,99 @@
+---
+import Base from "../layouts/Base.astro";
+import { tracks } from "../data/tracks";
+---
+
+<Base
+  title="FIDESZ SAPKA — tracks"
+  description="archive / tracks"
+  breadcrumb={[{ label: "tracks", href: "" }]}
+>
+  <!-- Column headers -->
+  <div class="drive-columns">
+    <span>Name</span>
+    <span>Last modified</span>
+    <span>File size</span>
+  </div>
+
+  <!-- Track rows -->
+  {tracks.map((t) => (
+    t.pending ? (
+      <div class="drive-row drive-row--pending" id={`track-${t.slug}`}>
+        <span class="drive-row__name">
+          <span class="drive-icon drive-icon--audio">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55C7.79 13 6 14.79 6 17s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" fill="#bdc1c6"/></svg>
+          </span>
+          <span>—</span>
+        </span>
+        <span class="drive-row__meta">pending</span>
+        <span class="drive-row__meta">—</span>
+      </div>
+    ) : (
+      <div data-slug={t.slug}>
+        <div class="drive-row track-row" data-track={t.slug} id={`track-${t.slug}`}>
+          <span class="drive-row__name">
+            <span class="drive-icon drive-icon--audio">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55C7.79 13 6 14.79 6 17s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" fill="#ea4335"/></svg>
+            </span>
+            <span>{t.title}.mp3</span>
+          </span>
+          <span class="drive-row__meta">{t.date}</span>
+          <span class="drive-row__meta">{t.duration}</span>
+        </div>
+        <div class="drive-player" id={`player-${t.slug}`} style="display:none">
+          <div class="drive-player__file">
+            <img
+              src="/brand/drive-logo-source.jpeg"
+              alt=""
+              class="drive-player__mark"
+            />
+            <div>
+              <p class="drive-player__filename">{t.title}.mp3</p>
+              <p class="drive-player__path mono">/tracks/{t.title}.mp3</p>
+            </div>
+          </div>
+          <audio preload="metadata" controls src={t.audio} data-slug={t.slug}></audio>
+          {(t.credits || t.lyric) && (
+            <div class="drive-player__credits">
+              {t.credits && <p style="margin:0">{t.credits}</p>}
+              {t.lyric && <p style="margin:0;white-space:pre-wrap">{t.lyric}</p>}
+            </div>
+          )}
+        </div>
+      </div>
+    )
+  ))}
+</Base>
+
+<script>
+  // Toggle player when clicking a track row
+  const rows = document.querySelectorAll<HTMLDivElement>(".track-row");
+
+  rows.forEach((row) => {
+    row.addEventListener("click", () => {
+      const slug = row.dataset.track;
+      const player = document.getElementById(`player-${slug}`);
+      if (!player) return;
+
+      const isOpen = player.style.display !== "none";
+
+      // Close all players first
+      document.querySelectorAll<HTMLDivElement>(".drive-player").forEach((p) => {
+        p.style.display = "none";
+        const a = p.querySelector<HTMLAudioElement>("audio");
+        a?.pause();
+        if (a) a.currentTime = 0;
+      });
+      document.querySelectorAll(".drive-row--selected").forEach((r) => {
+        r.classList.remove("drive-row--selected");
+      });
+
+      if (!isOpen) {
+        player.style.display = "block";
+        row.classList.add("drive-row--selected");
+        const audio = player.querySelector<HTMLAudioElement>("audio");
+        audio?.play().catch(() => {/* user gesture required on mobile */});
+      }
+    });
+  });
+</script>

@@ -1,0 +1,98 @@
+---
+/**
+ * AudioPlayer.astro
+ * A brutalist, terminal-style inline audio player.
+ * No rounded corners. No gradients. Instant state changes.
+ */
+interface Props {
+  src: string | null;
+  trackId: string;
+  title: string;
+}
+
+const { src, trackId, title } = Astro.props;
+---
+
+{src ? (
+  <div class="audio-player" data-track-id={trackId}>
+    <button
+      class="play-btn"
+      data-audio-src={src}
+      data-track-id={trackId}
+      aria-label={`Play ${title}`}
+      id={`play-${trackId}`}
+    >
+      [ ▶ ]
+    </button>
+    <div class="progress-container" id={`progress-${trackId}`}>
+      <div class="progress-bar" id={`bar-${trackId}`}></div>
+    </div>
+    <span class="time-display" id={`time-${trackId}`}>00:00</span>
+    <audio id={`audio-${trackId}`} preload="none">
+      <source src={src} type="audio/mpeg" />
+    </audio>
+  </div>
+) : (
+  <span class="no-audio">[ CLASSIFIED ]</span>
+)}
+
+<style>
+  .audio-player {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+
+  .play-btn {
+    background: none;
+    border: 1px solid var(--color-terminal-green);
+    color: var(--color-terminal-green);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 2px 4px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: none;
+  }
+
+  .play-btn:hover {
+    background: var(--color-terminal-green);
+    color: var(--color-terminal-black);
+  }
+
+  .play-btn.playing {
+    background: var(--color-terminal-green);
+    color: var(--color-terminal-black);
+  }
+
+  .progress-container {
+    flex: 1;
+    height: 6px;
+    border: 1px solid var(--color-terminal-gray-light);
+    background: var(--color-terminal-black);
+    min-width: 80px;
+    cursor: pointer;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: var(--color-terminal-green-dim);
+    width: 0%;
+    transition: none;
+  }
+
+  .time-display {
+    color: var(--color-terminal-gray-light);
+    font-size: 11px;
+    min-width: 40px;
+    text-align: right;
+  }
+
+  .no-audio {
+    color: var(--color-terminal-red);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+</style>

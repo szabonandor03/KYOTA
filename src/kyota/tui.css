@@ -1,0 +1,149 @@
+Screen {
+  layout: vertical;
+}
+
+#status-strip {
+  margin: 0 1;
+  padding: 0 1;
+  background: $boost;
+  color: auto;
+  height: 1;
+}
+
+#filter-input {
+  margin: 0 1;
+}
+
+#dashboard {
+  layout: vertical;
+  padding: 0 1 1 1;
+  height: 1fr;
+}
+
+#doctor-panel {
+  border: round $primary;
+  background: $surface;
+  color: auto;
+  min-height: 10;
+  padding: 1 2;
+  margin-bottom: 1;
+}
+
+#upper-row,
+#lower-row {
+  height: 1fr;
+}
+
+.panel {
+  border: round $panel;
+  background: $surface;
+  color: auto;
+  width: 1fr;
+  margin-right: 1;
+}
+
+#upper-row > .panel:last-child,
+#lower-row > .panel:last-child {
+  margin-right: 0;
+}
+
+.panel-title {
+  dock: top;
+  height: 1;
+  padding: 0 1;
+  background: $boost;
+  text-style: bold;
+}
+
+DataTable {
+  height: 1fr;
+}
+
+#detail-pane {
+  height: 1fr;
+  padding: 1 2;
+  overflow: auto;
+}
+
+#help-overlay {
+  layer: overlay;
+  width: 48;
+  height: auto;
+  max-height: 16;
+  dock: right;
+  margin: 2;
+  padding: 1 2;
+  border: round $accent;
+  background: $surface;
+  color: auto;
+}
+
+.action-modal {
+  align: center middle;
+  width: 88;
+  height: auto;
+  max-height: 90%;
+  padding: 1 2;
+  border: round $accent;
+  background: $surface;
+  color: auto;
+}
+
+.compact-modal {
+  width: 64;
+}
+
+.modal-title {
+  text-style: bold;
+  margin-bottom: 1;
+}
+
+.modal-body {
+  margin-bottom: 1;
+  color: $text-muted;
+}
+
+.modal-hint {
+  color: $text-muted;
+  margin-bottom: 1;
+}
+
+#claim-file-list {
+  height: 16;
+  margin-bottom: 1;
+}
+
+.modal-actions {
+  align: right middle;
+  height: auto;
+  margin-top: 1;
+}
+
+.modal-actions Button {
+  margin-left: 1;
+}
+
+.form-error {
+  min-height: 1;
+  color: $error;
+  margin-top: 1;
+}
+
+.hidden {
+  display: none;
+}
+
+Screen.narrow #upper-row,
+Screen.narrow #lower-row {
+  layout: vertical;
+}
+
+Screen.narrow .panel {
+  margin-right: 0;
+  margin-bottom: 1;
+}
+
+Screen.narrow .action-modal {
+  width: 1fr;
+  margin: 1;
+}

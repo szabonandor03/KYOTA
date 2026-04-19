@@ -1,0 +1,131 @@
+Metadata-Version: 2.4
+Name: kyota-cli
+Version: 0.1.0
+Summary: Local-first coordination CLI for the KYOTA workspace.
+Author: KYOTA
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Provides-Extra: test
+Requires-Dist: pytest>=8.0; extra == "test"
+Requires-Dist: textual>=8.2.0; extra == "test"
+Requires-Dist: pytest-textual-snapshot>=1.1.0; extra == "test"
+Provides-Extra: tui
+Requires-Dist: textual>=8.2.0; extra == "tui"
+Dynamic: requires-python
+
+# KYOTA
+
+KYOTA is a local-first coordination system for agent work. It keeps the real state in Markdown files inside `kyota-wiki/`, and the `kyota` command helps you work with that state safely instead of editing logs and ownership records by hand.
+
+## What You Use It For
+
+Use KYOTA when you want a simple way to:
+
+- see who owns which files
+- claim work before editing shared files
+- record blockers, verification, and release events
+- lint the workspace so drift and broken process show up quickly
+
+The source of truth stays in the repo. The CLI just makes it easier and safer to work with it.
+
+## Install
+
+From the repo root:
+
+```bash
+python3 -m pip install .
+```
+
+After that, you can run:
+
+```bash
+kyota --help
+```
+
+If you want the terminal coordination console too, install the TUI extra:
+
+```bash
+python3 -m pip install '.[tui]'
+```
+
+If you run the command outside the repo, set the workspace path first:
+
+```bash
+export KYOTA_REPO_ROOT=/path/to/KYOTA
+```
+
+If you want live local code changes without reinstalling every time, you can try:
+
+```bash
+python3 -m pip install -e .
+```
+
+If editable install fails on an older pip, upgrade pip first and rerun it.
+
+## The Commands You Will Actually Use
+
+- `kyota status` shows active claims and unresolved blockers.
+- `kyota claim --agent <id> --files ... --note "..."` claims shared work.
+- `kyota verify --agent <id> --files ... --note "..."` records that the work was checked.
+- `kyota release --agent <id> --files ... --note "..."` releases ownership after verification.
+- `kyota lint` checks the workspace for broken records, missing registry entries, and router drift.
+- `kyota doctor` does a quick setup and health check, then tells you what to run next.
+- `kyota tui` launches the Textual coordination console for day-to-day ownership work.
+
+## A Normal Wiki Session
+
+1. Check the workspace:
+
+```bash
+kyota doctor
+kyota status
+```
+
+2. Set your agent name for this shell:
+
+```bash
+export KYOTA_AGENT=codex
+```
+
+3. Open the TUI:
+
+```bash
+kyota tui
+```
+
+4. In the TUI:
+- press `c` to claim files
+- edit the Markdown in your normal editor
+- press `v` to verify the selected claim
+- press `x` to release it
+- use `b`, `u`, and `h` for blockers, unblock, and handoff when needed
+
+5. If you prefer or need a fallback, the CLI still works for the same actions:
+
+```bash
+kyota claim \
+  --files kyota-wiki/index.md kyota-wiki/log.md \
+  --note "Working on startup docs"
+
+kyota verify \
+  --files kyota-wiki/index.md kyota-wiki/log.md \
+  --note "Checked docs, links, and lint output"
+
+kyota release \
+  --files kyota-wiki/index.md kyota-wiki/log.md \
+  --note "Done with the doc update"
+```
+
+6. Run the safety check:
+
+```bash
+kyota lint
+```
+
+## Notes
+
+- KYOTA expects to run from the repo root, from inside `kyota-wiki/`, or with `KYOTA_REPO_ROOT` set.
+- The Markdown files remain the real system record.
+- `kyota-wiki/bin/kyota` still works, but the packaged `kyota` command is now the preferred entry point.
+- `kyota tui` is the primary coordination workflow in v2. Keep content editing in your normal editor and use the TUI for ownership, verification, blockers, and handoffs.
+- If `KYOTA_AGENT` is not set, the TUI stays readable but disables all write actions until you export it in the shell.

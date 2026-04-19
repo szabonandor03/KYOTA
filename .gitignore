@@ -1,0 +1,20 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Agent/Developer state
+.claude/
+.gemini/
+.env
+*.log
+
+# Personal/Vault settings
+.obsidian/
+.vscode/
+
+# Build artifacts and dependencies
+node_modules/
+dist/
+build/
+.astro/
+package-lock.json
