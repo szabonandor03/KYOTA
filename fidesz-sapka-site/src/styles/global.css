@@ -472,6 +472,14 @@ button {
   padding: 12px 20px;
 }
 
+.drive-grid--video {
+  grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+}
+
+.drive-grid--photo {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
 .drive-grid__item {
   border: 1px solid var(--color-rule);
   overflow: hidden;
