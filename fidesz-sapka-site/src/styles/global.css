@@ -586,6 +586,10 @@ button {
   padding: 0;
 }
 
+.drive-grid__item--video.is-playing {
+  overflow: visible;
+}
+
 .drive-grid__item--video.is-playing .drive-grid__video-thumb {
   display: none;
 }
