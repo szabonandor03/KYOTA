@@ -26,7 +26,7 @@ const {
       (function () {
         var s = localStorage.getItem("fs-theme");
         var d = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        if (s === "dark" || (!s && d)) document.documentElement.dataset.theme = "dark";
+        document.documentElement.dataset.theme = s || (d ? "dark" : "light");
       })();
     </script>
   </head>

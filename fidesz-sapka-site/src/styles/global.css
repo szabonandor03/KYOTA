@@ -774,6 +774,10 @@ canvas.glitch-noise {
   .drive-grid {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   }
+
+  .drive-grid--video {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
