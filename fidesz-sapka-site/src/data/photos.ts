@@ -6,6 +6,7 @@ export interface Photo {
 
 // Captions default to the filename when empty. Fill in later.
 export const photos: Photo[] = [
+  { file: "/photos/dscf3751.jpg" },
   { file: "/photos/dsc_0745.jpg" },
   { file: "/photos/dsc_0750.jpg" },
   { file: "/photos/dsc_0787.jpg" },
