@@ -16,8 +16,9 @@ import { tracks } from "../data/tracks";
   </div>
 
   <!-- Track rows -->
-  {tracks.map((t) => (
-    t.pending ? (
+  {tracks.map((t) => {
+    const filename = t.audio ? t.audio.split("/").pop() : "—";
+    return t.pending ? (
       <div class="drive-row drive-row--pending" id={`track-${t.slug}`}>
         <span class="drive-row__name">
           <span class="drive-icon drive-icon--audio">
@@ -35,7 +36,7 @@ import { tracks } from "../data/tracks";
             <span class="drive-icon drive-icon--audio">
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55C7.79 13 6 14.79 6 17s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" fill="#ea4335"/></svg>
             </span>
-            <span>{t.title}.mp3</span>
+            <span>{filename}</span>
           </span>
           <span class="drive-row__meta">{t.date}</span>
           <span class="drive-row__meta">{t.duration}</span>
@@ -48,8 +49,8 @@ import { tracks } from "../data/tracks";
               class="drive-player__mark"
             />
             <div>
-              <p class="drive-player__filename">{t.title}.mp3</p>
-              <p class="drive-player__path mono">/tracks/{t.title}.mp3</p>
+              <p class="drive-player__filename">{filename}</p>
+              <p class="drive-player__path mono">/audio/{filename}</p>
             </div>
           </div>
           <audio preload="metadata" controls src={t.audio} data-slug={t.slug}></audio>
@@ -61,8 +62,8 @@ import { tracks } from "../data/tracks";
           )}
         </div>
       </div>
-    )
-  ))}
+    );
+  })}
 </Base>
 
 <script>
