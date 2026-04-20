@@ -22,8 +22,15 @@ const {
     <meta name="theme-color" content="#f3efe7" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+    <script is:inline>
+      (function () {
+        var s = localStorage.getItem("fs-theme");
+        var d = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (s === "dark" || (!s && d)) document.documentElement.dataset.theme = "dark";
+      })();
+    </script>
   </head>
-  <body data-glitch="idle">
+  <body>
     <header class="drive-toolbar">
       <a href="/" class="drive-toolbar__logo" aria-label="Home">
         <span class="drive-toolbar__mark" aria-hidden="true">
@@ -44,13 +51,12 @@ const {
           />
         </span>
         <span class="drive-toolbar__titleblock">
-          <span class="drive-toolbar__eyebrow mono">shared archive</span>
           <span class="glitch-text" data-text="FIDESZ SAPKA">FIDESZ SAPKA</span>
         </span>
       </a>
       <div class="drive-toolbar__meta mono" aria-label="Archive metadata">
-        <span>updated 2026-04-19</span>
-        <span>unstable preview</span>
+        <span>updated 2026-04-20</span>
+        <button id="theme-toggle" aria-label="Toggle dark mode">dark</button>
       </div>
     </header>
 
@@ -74,66 +80,83 @@ const {
       </main>
 
       <footer class="drive-footer">
-        <p style="margin:0">fidesz sapka</p>
-        <p style="margin:2px 0 0">
-          ig:
-          <a href="https://instagram.com/fideszsapka">@fideszsapka</a>
-          ·
-          <a href="mailto:szabonandor03@gmail.com">szabonandor03@gmail.com</a>
-        </p>
+        <p style="margin:0">fidesz sapka · ig: <a href="https://instagram.com/fideszsapka">@fideszsapka</a></p>
       </footer>
     </div>
 
-    <div class="glitch-noise" aria-hidden="true"></div>
-    <div class="glitch-scan" aria-hidden="true"></div>
-    <div class="glitch-slice" aria-hidden="true"></div>
+    <canvas class="glitch-noise" aria-hidden="true"></canvas>
+    <div class="glitch-vignette" aria-hidden="true"></div>
   </body>
 </html>
 
 <script is:inline>
-  const root = document.body;
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  (() => {
+    const root = document.body;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  if (!reduced) {
-    const states = [
-      { name: "scan", duration: [140, 220] },
-      { name: "split", duration: [120, 200] },
-      { name: "slice", duration: [150, 240] },
-    ];
+    if (reduced) return;
 
-    let clearTimer;
+    // Animated canvas grain — 256×256 pixelated, ~20fps
+    const canvas = document.querySelector("canvas.glitch-noise");
+    if (canvas && canvas.getContext) {
+      const ctx = canvas.getContext("2d");
+      const SIZE = 256;
+      canvas.width = SIZE;
+      canvas.height = SIZE;
+      const buf = new Uint8ClampedArray(SIZE * SIZE * 4);
+      let frame = 0;
 
-    const randomInRange = (min, max) => min + Math.random() * (max - min);
+      const drawGrain = () => {
+        frame++;
+        if (frame % 3 === 0) {
+          for (let i = 0; i < buf.length; i += 4) {
+            const v = (Math.random() * 256) | 0;
+            buf[i] = buf[i + 1] = buf[i + 2] = v;
+            buf[i + 3] = 255;
+          }
+          ctx.putImageData(new ImageData(buf, SIZE, SIZE), 0, 0);
+        }
+        requestAnimationFrame(drawGrain);
+      };
+      drawGrain();
+    }
 
-    const fireGlitch = () => {
-      const state = states[Math.floor(Math.random() * states.length)];
-      const duration = randomInRange(state.duration[0], state.duration[1]);
-      root.dataset.glitch = state.name;
-      root.style.setProperty("--glitch-shift", `${randomInRange(-2.4, 2.4).toFixed(2)}px`);
-      root.style.setProperty("--glitch-slice-top", `${randomInRange(12, 78).toFixed(2)}%`);
-      root.style.setProperty("--glitch-slice-height", `${randomInRange(7, 15).toFixed(2)}%`);
+    const rnd = (a, b) => a + Math.random() * (b - a);
 
-      window.clearTimeout(clearTimer);
-      clearTimer = window.setTimeout(() => {
-        root.dataset.glitch = "idle";
-      }, duration);
-    };
-
-    const schedule = () => {
-      window.setTimeout(() => {
-        fireGlitch();
-        schedule();
-      }, randomInRange(3800, 9800));
-    };
-
-    schedule();
-
-    document
-      .querySelectorAll(".drive-row, .drive-grid__item, .drive-toolbar__mark, .detail-card")
-      .forEach((node) => {
-        node.addEventListener("mouseenter", () => {
-          if (Math.random() < 0.18) fireGlitch();
-        });
+    // Theme toggle
+    const toggleBtn = document.getElementById("theme-toggle");
+    if (toggleBtn) {
+      const sync = () => {
+        const dark = document.documentElement.dataset.theme === "dark";
+        toggleBtn.textContent = dark ? "light" : "dark";
+      };
+      sync();
+      toggleBtn.addEventListener("click", () => {
+        const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem("fs-theme", next);
+        sync();
       });
-  }
+    }
+
+    // Micro-flicker — rare, brief luminance flash like a tube warming up
+    const flickEl = document.createElement("div");
+    flickEl.style.cssText = "position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0;background:rgba(248,244,235,0.12);";
+    document.body.appendChild(flickEl);
+
+    const flicker = () => {
+      flickEl.style.opacity = (0.06 + Math.random() * 0.09).toFixed(3);
+      setTimeout(() => {
+        flickEl.style.opacity = "0";
+        if (Math.random() < 0.38) {
+          setTimeout(() => {
+            flickEl.style.opacity = (0.04 + Math.random() * 0.06).toFixed(3);
+            setTimeout(() => { flickEl.style.opacity = "0"; }, 16 + rnd(0, 32));
+          }, rnd(40, 110));
+        }
+      }, 16 + rnd(0, 50));
+      setTimeout(flicker, rnd(7000, 22000));
+    };
+    setTimeout(flicker, rnd(4000, 10000));
+  })();
 </script>

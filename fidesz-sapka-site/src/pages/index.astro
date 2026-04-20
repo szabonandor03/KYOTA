@@ -1,81 +1,44 @@
 ---
 import Base from "../layouts/Base.astro";
-import { photos } from "../data/photos";
-import { tracks } from "../data/tracks";
-import { videos } from "../data/videos";
-
-const releasedTracks = tracks.filter((track) => !track.pending).length;
 ---
 
 <Base title="FIDESZ SAPKA" description="archive">
-  <section class="drive-home">
-    <div class="drive-home__browser">
-      <div class="drive-columns">
-        <span>Name</span>
-        <span>Last modified</span>
-        <span>File size</span>
-      </div>
+  <div class="drive-columns">
+    <span>Name</span>
+    <span>Last modified</span>
+    <span>File size</span>
+  </div>
 
-      <a href="/tracks" class="drive-row" id="folder-tracks">
-        <span class="drive-row__name">
-          <span class="drive-icon drive-icon--folder">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z" fill="#f4b400"/></svg>
-          </span>
-          tracks
-        </span>
-        <span class="drive-row__meta">2026-04-19</span>
-        <span class="drive-row__meta">—</span>
-      </a>
+  <a href="/tracks" class="drive-row" id="folder-tracks">
+    <span class="drive-row__name">
+      <span class="drive-icon drive-icon--folder">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z" fill="#f4b400"/></svg>
+      </span>
+      tracks
+    </span>
+    <span class="drive-row__meta">2026-04-19</span>
+    <span class="drive-row__meta">—</span>
+  </a>
 
-      <a href="/photos" class="drive-row" id="folder-photos">
-        <span class="drive-row__name">
-          <span class="drive-icon drive-icon--folder">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z" fill="#f4b400"/></svg>
-          </span>
-          photos
-        </span>
-        <span class="drive-row__meta">2026-04-19</span>
-        <span class="drive-row__meta">—</span>
-      </a>
+  <a href="/photos" class="drive-row" id="folder-photos">
+    <span class="drive-row__name">
+      <span class="drive-icon drive-icon--folder">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z" fill="#f4b400"/></svg>
+      </span>
+      photos
+    </span>
+    <span class="drive-row__meta">2026-04-19</span>
+    <span class="drive-row__meta">—</span>
+  </a>
 
-      <a href="/videos" class="drive-row" id="folder-videos">
-        <span class="drive-row__name">
-          <span class="drive-icon drive-icon--folder">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z" fill="#f4b400"/></svg>
-          </span>
-          videos
-        </span>
-        <span class="drive-row__meta">2026-04-19</span>
-        <span class="drive-row__meta">—</span>
-      </a>
-    </div>
-
-    <aside class="drive-home__details">
-      <section class="detail-card">
-        <div class="detail-card__preview">
-          <img src="/brand/drive-logo-source.jpeg" alt="Pixelated Google Drive logo" />
-        </div>
-        <div class="detail-card__body">
-          <p class="detail-card__title">shared archive</p>
-          <p class="detail-card__description">
-            Local copy. Slightly unstable. Three tracks, photos, ambient clips.
-          </p>
-          <dl class="detail-card__meta mono">
-            <div>
-              <dt>path</dt>
-              <dd>/shared/fidesz-sapka/current</dd>
-            </div>
-            <div>
-              <dt>items</dt>
-              <dd>{releasedTracks} audio / {photos.length} photos / {videos.length} videos</dd>
-            </div>
-            <div>
-              <dt>state</dt>
-              <dd>compression visible</dd>
-            </div>
-          </dl>
-        </div>
-      </section>
-    </aside>
-  </section>
+  <a href="/videos" class="drive-row" id="folder-videos">
+    <span class="drive-row__name">
+      <span class="drive-icon drive-icon--folder">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z" fill="#f4b400"/></svg>
+      </span>
+      videos
+    </span>
+    <span class="drive-row__meta">2026-04-19</span>
+    <span class="drive-row__meta">—</span>
+  </a>
 </Base>

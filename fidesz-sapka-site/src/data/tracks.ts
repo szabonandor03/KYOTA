@@ -1,9 +1,9 @@
 export interface Track {
   slug: string;
   title: string;
-  date: string; // YYYY-MM-DD, or YYYY-XX-XX if unknown
-  audio: string; // public-rooted path
-  duration?: string; // mm:ss
+  date: string;
+  audio: string;
+  duration?: string;
   credits?: string;
   lyric?: string;
   cover?: string;
@@ -33,8 +33,8 @@ export const tracks: Track[] = [
     duration: "2:40",
   },
   {
-    slug: "pending",
-    title: "—",
+    slug: "frequency",
+    title: "frequency",
     date: "pending",
     audio: "",
     pending: true,
