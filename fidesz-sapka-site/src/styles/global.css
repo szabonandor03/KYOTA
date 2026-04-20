@@ -268,15 +268,16 @@ button {
   position: absolute;
   inset: 0;
   pointer-events: none;
+  filter: blur(1.8px);
 }
 
 .glitch-text::before {
-  color: rgba(234, 67, 53, 0.5);
+  color: rgba(234, 67, 53, 0.6);
   animation: ca-r 9s ease-in-out infinite;
 }
 
 .glitch-text::after {
-  color: rgba(66, 133, 244, 0.45);
+  color: rgba(66, 133, 244, 0.55);
   animation: ca-b 11s ease-in-out infinite;
 }
 
@@ -795,15 +796,15 @@ canvas.glitch-noise {
 /* ===== KEYFRAMES ===== */
 
 @keyframes ca-r {
-  0%, 100% { opacity: 0.13; transform: translateX(-0.5px); }
-  35%       { opacity: 0.22; transform: translateX(-1.1px); }
-  70%       { opacity: 0.07; transform: translateX(-0.2px); }
+  0%, 100% { opacity: 0.35; transform: translate(-1.5px, 0.5px); }
+  35%       { opacity: 0.55; transform: translate(-3px, 1px); }
+  70%       { opacity: 0.2;  transform: translate(-0.8px, 0.2px); }
 }
 
 @keyframes ca-b {
-  0%, 100% { opacity: 0.11; transform: translateX(0.5px); }
-  45%       { opacity: 0.19; transform: translateX(0.95px); }
-  75%       { opacity: 0.05; transform: translateX(0.15px); }
+  0%, 100% { opacity: 0.3;  transform: translate(1.5px, -0.5px); }
+  45%       { opacity: 0.5;  transform: translate(3px, -1px); }
+  75%       { opacity: 0.15; transform: translate(0.6px, -0.2px); }
 }
 
 @keyframes logo-ca-r {
