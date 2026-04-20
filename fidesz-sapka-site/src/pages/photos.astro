@@ -9,7 +9,7 @@ import { photos } from "../data/photos";
   breadcrumb={[{ label: "photos", href: "" }]}
 >
   <!-- Grid view (Drive's tile layout) -->
-  <div class="drive-grid">
+  <div class="drive-grid drive-grid--photo">
     {photos.map((p, i) => {
       const name = p.file.split("/").pop();
       return (
