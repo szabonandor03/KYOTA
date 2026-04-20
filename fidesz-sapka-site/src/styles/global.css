@@ -2,7 +2,7 @@
 
 @theme {
   --color-bg: #f3efe7;
-  --color-bg-toolbar: rgba(247, 244, 238, 0.94);
+  --color-bg-toolbar: rgba(247, 244, 238, 0.78);
   --color-surface: #faf7f1;
   --color-fg: #202124;
   --color-muted: #5f6368;
@@ -195,9 +195,10 @@ button {
   gap: 12px;
   min-height: 64px;
   padding: 10px 16px 12px;
-  border-bottom: 1px solid var(--color-rule);
+  border-bottom: 1px solid rgba(214, 208, 199, 0.4);
   background: var(--color-bg-toolbar);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(3px);
+  filter: blur(0.45px);
 }
 
 .drive-toolbar__logo {
@@ -843,7 +844,7 @@ canvas.glitch-noise {
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --color-bg: #18171a;
-    --color-bg-toolbar: rgba(20, 19, 23, 0.96);
+    --color-bg-toolbar: rgba(20, 19, 23, 0.82);
     --color-surface: #1f1e22;
     --color-fg: #e4e0d8;
     --color-muted: #8a8680;
@@ -926,7 +927,7 @@ canvas.glitch-noise {
 
 :root[data-theme="dark"] {
   --color-bg: #18171a;
-  --color-bg-toolbar: rgba(20, 19, 23, 0.96);
+  --color-bg-toolbar: rgba(20, 19, 23, 0.82);
   --color-surface: #1f1e22;
   --color-fg: #e4e0d8;
   --color-muted: #8a8680;
@@ -955,7 +956,6 @@ canvas.glitch-noise {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 18%);
 }
 
-:root[data-theme="dark"] .drive-toolbar__mark { background: rgba(255, 255, 255, 0.08); }
 
 :root[data-theme="dark"] .drive-player,
 :root[data-theme="dark"] .drive-video-preview { background: rgba(28, 27, 33, 0.9); }
