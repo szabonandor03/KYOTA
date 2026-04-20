@@ -212,9 +212,8 @@ button {
   width: 52px;
   height: 52px;
   flex-shrink: 0;
-  overflow: hidden;
-  border: 1px solid var(--color-rule);
-  background: rgba(255, 255, 255, 0.66);
+  filter: blur(0.9px);
+  animation: logo-defocus 18s ease-in-out infinite;
 }
 
 .drive-toolbar__mark-layer {
@@ -833,6 +832,12 @@ canvas.glitch-noise {
   75%       { opacity: 0.02; transform: translateX(0.1px); }
 }
 
+@keyframes logo-defocus {
+  0%, 100% { filter: blur(0.8px); }
+  40%       { filter: blur(1.7px); }
+  65%       { filter: blur(0.4px); }
+}
+
 /* ===== DARK MODE ===== */
 
 @media (prefers-color-scheme: dark) {
@@ -871,9 +876,6 @@ canvas.glitch-noise {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 18%);
   }
 
-  :root:not([data-theme="light"]) .drive-toolbar__mark {
-    background: rgba(255, 255, 255, 0.08);
-  }
 
   :root:not([data-theme="light"]) .drive-player,
   :root:not([data-theme="light"]) .drive-video-preview {
