@@ -6,6 +6,7 @@ Read `../index.md` and `../NOW.md` first, then open only the smallest set of ent
 - [ai_creator_website_tools_and_stack.md](./ai_creator_website_tools_and_stack.md) - AI Website-Builder Landscape and Open-Source Stacks.
 - [autonomous_verification_loops.md](./autonomous_verification_loops.md) - Deterministic reflector patterns, gap modules, and execution-feedback loops for self-correcting agents.
 - [claude_context_rules.md](./claude_context_rules.md) - Official Anthropic guidance for context windows, system prompts, and long-context handling.
+- [codex_memory_core.md](./codex_memory_core.md) - Compact default Codex brain: small standing core, retrieval triggers, skills over prompt sprawl, and durable workflow-memory rules.
 - [context_degradation_safeguards.md](./context_degradation_safeguards.md) - Failure modes and token-efficient countermeasures for long-horizon work.
 - [creative_selection.md](./creative_selection.md) - Demo-driven, taste-led iteration model adapted from Kocienda's Apple design process for KYOTA UI features.
 - [creator_web_design_canon.md](./creator_web_design_canon.md) - Canon for creator websites: grids, technical mono, surveillance aesthetic, brutalism.
@@ -24,6 +25,7 @@ Read `../index.md` and `../NOW.md` first, then open only the smallest set of ent
 - [shaughnessy_graphic_designer.md](./shaughnessy_graphic_designer.md) - Shaughnessy's professional/creative boundary: master the rote work to earn the right to unconventional design moves.
 - [specialist_playbook.md](./specialist_playbook.md) - Specialist quickstart: startup flow, slice-selection heuristics, VERIFY evidence standards, report shape.
 - [spl_declarative_context.md](./spl_declarative_context.md) - Operator-guided `ASK -> BUDGET -> SELECT -> GENERATE` workflow for context assembly.
+- [superpowers_operating_notes.md](./superpowers_operating_notes.md) - Optional Codex execution lane for larger implementation/debugging work; maps Superpowers workflow discipline onto KYOTA without creating a second memory system.
 - [vignelli_canon.md](./vignelli_canon.md) - Vignelli's foundational aesthetic discipline (semantics, syntactics, pragmatics, discipline, timelessness) for KYOTA interface philosophy.
 - [materiality_and_dematerialization.md](./materiality_and_dematerialization.md) - UX strategies countering digital interface dematerialization through packaging and tactile engagement.
 - [typographic_rhythm_and_feeling.md](./typographic_rhythm_and_feeling.md) - Treating typography as active structural objects representing emotion and rhythm rather than passive text.
@@ -37,4 +39,5 @@ Read `../index.md` and `../NOW.md` first, then open only the smallest set of ent
 - [rollout_historical_artifact.md](./rollout_historical_artifact.md) - Extreme scarcity, radical transparency, and catalog numbering from Wu-Tang, Aphex Twin, and Factory Records.
 - [rollout_narrative_labor.md](./rollout_narrative_labor.md) - Transmedia discovery, World Bibles, and durational attention filters from NIN Year Zero, Frank Ocean, and Gorillaz.
 - [rollout_fs003_campaign_plan.md](./rollout_fs003_campaign_plan.md) - Staged 14-day deadpan catch-up rollout for FIDESZ SAPKA's FS-003 "király": catalog context, Drive-aesthetic framing, day-by-day timeline, paid boost spec, open questions for next session.
+- [openai_chatgpt_codex_operating_notes.md](./openai_chatgpt_codex_operating_notes.md) - Official OpenAI product facts distilled into KYOTA rules for ChatGPT-native features, Codex, and file-first multi-model coordination.
 - [operator_profile.md](./operator_profile.md) - Operator identity, active music projects (Gyuris productions, FIDESZ SAPKA catalog incl. FS-001 adide / FS-002 kia / FS-003 király + album direction), and current tactical priorities.

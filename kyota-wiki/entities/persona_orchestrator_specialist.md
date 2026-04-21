@@ -7,11 +7,24 @@
 ## Purpose
 Define role boundaries so the user experiences one coherent control surface while interchangeable specialist agents operate under the same KYOTA contract.
 
+## Use When
+
+- the task spans orchestration, specialist boundaries, or model-role questions
+- a handoff between Claude and Codex needs a shared role vocabulary
+- the session needs to decide whether the current runtime is acting as orchestrator, specialist, or both
+
+## Do Not Load When
+
+- a bounded task is already fully scoped and does not raise routing or handoff questions
+- the single-prompt website workflow is already sufficient
+- the work is a tiny fix where role-boundary reasoning would be pure overhead
+
 ## Core Rules
 1. The user interacts with the `Orchestrator`, not with raw specialist internals.
 2. Either Codex or Claude may serve as a `Specialist` agent inside KYOTA if it follows the same startup, coordination, and reporting rules.
 3. Specialists do not own the user's overarching intent. They execute bounded tasks, keep state synchronized through `index.md` and `NOW.md`, and report back concise outcomes, risks, and state changes.
 4. The Orchestrator owns decomposition, sequencing, cross-specialist reconciliation, and the final user-facing framing when multiple specialist outputs must be integrated.
+5. Model preferences may shape routing, but they do not create permanent ownership. Claude and Codex remain peer specialists unless a task contract says otherwise.
 
 ## Goldilocks-Zone Prompting
 1. System prompts must be specific enough to constrain scope and safety.
@@ -29,6 +42,8 @@ Define role boundaries so the user experiences one coherent control surface whil
 - Orchestrator: intent understanding, task decomposition, routing, integration, and user-facing simplification.
 - Specialist agent: executes bounded tasks under the shared KYOTA contract, regardless of whether the runtime is Codex or Claude.
 - Workspace policy may note model strengths, but it must not assign permanent task ownership by model name.
+
+Cross-model canonicality and handoff specifics live in [`../schema/multi_model_operating_contract.md`](../schema/multi_model_operating_contract.md).
 
 ## Escalation Rule
 - When a task crosses file ownership, claim boundaries, or orchestration scope, the specialist must request a re-route or split rather than silently absorbing unrelated work.

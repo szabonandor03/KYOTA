@@ -3,6 +3,18 @@
 ## Purpose
 Help an agent pick the smallest fitting execution loop for a task - direct execution, explicit RCI, deterministic reflector, or formal verification gate - and compose them when one alone is not enough. This page is the operational selector over the prompt modules in [`../schema/kyota_agent_schemas.md`](../schema/kyota_agent_schemas.md).
 
+## Use When
+
+- the task needs an explicit decision about which execution loop fits the risk and verifier surface
+- a session is about to stack critique, verification, or tool-gating logic and needs a smaller fit
+- a handoff needs to explain why a task used direct execution, RCI, a reflector, or a formal gate
+
+## Do Not Load When
+
+- the task contract already fixes the execution pattern
+- a tiny change can be completed directly with an obvious post-hoc check
+- the work does not need a pattern decision because the verifier surface is already prescribed
+
 ## Canonical Authority
 - Prompt fragments and module contracts: [`../schema/kyota_agent_schemas.md`](../schema/kyota_agent_schemas.md) (normative).
 - Underlying entities:

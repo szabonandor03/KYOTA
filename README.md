@@ -4,6 +4,8 @@ KYOTA is a local-first LLM wiki for agent work.
 
 The center of gravity is [`kyota-wiki/`](./kyota-wiki/): a Markdown source-of-truth for current project state, durable operational knowledge, working rules, and raw source material. The system is built to help future Claude Code or Codex sessions recover context quickly, ask a few scoping questions, select only the files they need, and execute with bounded startup cost.
 
+Use this README for cold-start orientation only. Once you're inside `kyota-wiki/`, switch to the narrower startup and task contracts instead of reloading broad repo context.
+
 This repo is optimized for single-operator, serial-agent work. It is not primarily a concurrent in-repo coordination system.
 
 ## What KYOTA Is For
@@ -25,9 +27,10 @@ For a normal session:
 2. Read [`kyota-wiki/NOW.md`](./kyota-wiki/NOW.md).
 3. If the task is a concrete `fidesz-sapka-site/` edit, use the one-prompt fast path in [`kyota-wiki/schema/fidesz_sapka_single_prompt_workflow.md`](./kyota-wiki/schema/fidesz_sapka_single_prompt_workflow.md).
 4. Otherwise ask the operator a few short questions about what they are thinking about, what outcome matters, and what should be excluded.
-5. Choose a context budget: `tight`, `standard`, or `large`.
-6. Select only the files needed for the task.
-7. Then generate or execute.
+5. Create a compact context-selection record: goal, exclusions, budget, selected context, omitted context, execution pattern, verify method.
+6. Choose a context budget: `tight`, `standard`, or `large`.
+7. Select only the files needed for the task.
+8. Then generate or execute.
 
 Core method:
 
@@ -48,6 +51,8 @@ There is one deliberate exception: routine FIDESZ SAPKA website edits can run in
 - [`entities/`](./kyota-wiki/entities/): distilled operational knowledge. These files turn research and prior work into compact, reusable guidance.
 - [`raw/`](./kyota-wiki/raw/): evidence and provenance layer. Preserve source material here so later sessions can verify claims or re-distill knowledge without losing the original basis.
 - [`tasks/`](./kyota-wiki/tasks/): task-specific contracts when a piece of work needs a bounded working document.
+- [`schema/context_selection_contract.md`](./kyota-wiki/schema/context_selection_contract.md) and [`schema/multi_model_operating_contract.md`](./kyota-wiki/schema/multi_model_operating_contract.md): new workflow contracts for explicit context selection and file-first multi-model coordination.
+- [`tasks/kyota-architecture-evolution.md`](./kyota-wiki/tasks/kyota-architecture-evolution.md): active roadmap for workflow OS evolution until the rules are stable enough for `schema/`.
 - [`CLAUDE.md`](./kyota-wiki/CLAUDE.md) and [`CODEX.md`](./kyota-wiki/CODEX.md): specialist entry contracts for the two main agent environments.
 
 In practice:

@@ -10,18 +10,23 @@ One file. Current state, blockers, next actions. Updated in place, not appended.
 - Masters transcoded to 192k MP3 (adide 3:40, kia 2:48, kiraly 2:40). Raw `.mov` clips → web MP4 with posters.
 - Build output: 31MB static bundle.
 - Design invariants live in [`fidesz-sapka-site/CLAUDE.md`](../fidesz-sapka-site/CLAUDE.md). Read before touching styles.
+**KYOTA workflow OS** (`kyota-wiki/`) — architecture evolution docs landed on 2026-04-21.
+- Roadmap lives at [`tasks/kyota-architecture-evolution.md`](./tasks/kyota-architecture-evolution.md).
+- New schema contracts: [`schema/context_selection_contract.md`](./schema/context_selection_contract.md) and [`schema/multi_model_operating_contract.md`](./schema/multi_model_operating_contract.md).
+- Current focus: explicit omitted-context records, file-first multi-model rules, optional Superpowers execution-lane rules, and pilot tasks to prove what actually needs loading.
+- Codex frontier canon now lives at [`tasks/codex-frontier-source-program.md`](./tasks/codex-frontier-source-program.md).
+- Codex default repo brain now lives at [`entities/codex_memory_core.md`](./entities/codex_memory_core.md).
+- Optional Codex Superpowers lane now lives at [`entities/superpowers_operating_notes.md`](./entities/superpowers_operating_notes.md).
 
 ## Open content / metadata TBDs
-- `src/data/tracks.ts` has `YYYY-XX-XX` placeholders for adide/kia release dates, `TBD` for kiraly day.
 - No credits or lyric fragments yet.
-- `layouts/Base.astro` footer: `—` placeholders for spotify/yt handles, `szabonandor03@gmail.com` as contact — verify with operator.
 
 ## Next actions (in order)
 1. Start a fresh Codex task for this repo and verify local `.git` write access at task start; this session can edit files and use the GitHub connector, but cannot create local git lockfiles.
 2. Continue stabilization from remote branch `codex/stabilize-worktree-20260421` if the current dirty worktree needs to be preserved or landed through PR.
-3. Only touch `fidesz-sapka-site/` for concrete post-launch fixes or content updates after the repo state is stable.
-4. If the missing metadata matters, collect the remaining dates, credits, lyric fragments, and footer handles from the operator.
-5. Record the actual production host in the wiki once verified; the live domain is confirmed, but the deploy provider is not yet documented here.
+3. Pilot the context-selection contract on one architecture/planning task and record selected context, omitted context, and wasted context in the roadmap.
+4. Run the next candidate-queue source review from `tasks/codex-frontier-source-program.md`.
+5. Pilot the optional Superpowers lane on one medium implementation or debugging task if the runtime actually exposes the plugin in-session.
 
 ## Withheld / not shipped
 - Album entirely — per FS-003 rollout plan, do not surface.
@@ -29,12 +34,11 @@ One file. Current state, blockers, next actions. Updated in place, not appended.
 - `fidesz-sapka-archive/` is the rejected terminal-cosplay version. Do NOT follow its direction; operator rejected "too much terminal."
 
 ## Recent decisions (rolling, keep to ~5)
-- **2026-04-21** — Added [`schema/fidesz_sapka_single_prompt_workflow.md`](./schema/fidesz_sapka_single_prompt_workflow.md) and wired startup docs to treat bounded `fidesz-sapka-site/` edits as a one-prompt fast path.
-- **2026-04-21** — Fixed GitHub connector access for `szabonandor03/KYOTA`; the app can now see the repo and create remote branches. Created `codex/stabilize-worktree-20260421` as the stabilization branch.
-- **2026-04-21** — Confirmed this specific Codex session still cannot write under `.git` (`.lock` creation fails with `Operation not permitted`). Repo cleanup must continue in a fresh task that re-tests local git permissions.
-- **2026-04-21** — Confirmed the FIDESZ SAPKA site is live at `https://fideszsapka.hu`. Updated `NOW.md` to remove stale pre-launch actions and treat deployment as complete.
-- **2026-04-21** — Formalized the repo git contract in [`schema/version_control_workflow.md`](./schema/version_control_workflow.md): clean start from `main`, short-lived task branches, PR-first landing, explicit exceptions for direct `main` commits, and branch cleanup after merge.
-- **2026-04-19** — FS site redesign: replaced vectorized Drive mark with low-res raster; file-browser + details-pane homepage; IBM Plex Sans/Mono; removed decorative fake-glitch; added brief event-based scan/slice/chroma corruption grounded in KYOTA design canon.
+- **2026-04-21** — Added repo-root `AGENTS.md` and `fidesz-sapka-site/AGENTS.md` so fresh Codex sessions automatically bootstrap into KYOTA startup rules and the site fast path.
+- **2026-04-21** — Site-context fast-path pilot succeeded on a minimal load set: updated the visible archive stamp in `fidesz-sapka-site/src/layouts/Base.astro` and verified with `npm run build`.
+- **2026-04-21** — Reviewed Simon Willison's `Codex for Open Source` as the first candidate-queue ingestion pilot and resolved it as `NOOP`; preserved the raw review but made no behavior/entity change.
+- **2026-04-21** — Documented Superpowers as an optional Codex execution lane only; durable plans and state stay in KYOTA-native files and fallback remains the standard KYOTA contract when the plugin is not exposed in-session.
+- **2026-04-21** — Added `tasks/codex-frontier-source-program.md` and `entities/codex_memory_core.md`; Codex now has a small standing wiki core plus a curated frontier-source watchlist instead of relying on broad preload.
 
 ## Plan file (external)
 `~/.claude/plans/what-were-we-doing-deep-moonbeam.md` — deeper spec for the FS site build.

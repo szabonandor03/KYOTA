@@ -3,6 +3,18 @@
 ## Purpose
 Concrete walkthrough for turning a new research source into durable KYOTA knowledge so ingestion takes minutes, not a re-read of every schema.
 
+## Use When
+
+- adding a new source to `/raw/`
+- deciding whether a source becomes an entity update or a `NOOP`
+- checking the minimum artifact set for `ADD`, `UPDATE`, `DELETE`, or `NOOP`
+
+## Do Not Load When
+
+- the task is only consuming existing entity guidance
+- the task does not create or revise durable knowledge
+- the work is a bounded implementation change with no new source material
+
 ## Canonical Authority
 - Source-of-truth rules: [`../schema/research_protocol.md`](../schema/research_protocol.md).
 - Memory-operation semantics (`ADD`/`UPDATE`/`DELETE`/`NOOP`): [`./hierarchical_memory_rules.md`](./hierarchical_memory_rules.md).
@@ -18,6 +30,8 @@ Skip (`NOOP`) when the source:
 - Restates guidance already captured with equal or better precision.
 - Contains only editorial/marketing framing around an already-ingested technical point.
 - Is published before 2024 and conflicts with [`../schema/research_protocol.md`](../schema/research_protocol.md)'s recency rule, unless it is the primary source for a concept still referenced by newer work.
+
+Default to `NOOP` unless the source changes behavior, policy, or execution quality in a way the current knowledge base does not already capture.
 
 When in doubt, prefer `NOOP` over speculative ingestion. Note the decision in `NOW.md` under **Recent decisions** so future agents do not re-evaluate the same source.
 

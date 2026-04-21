@@ -2,13 +2,27 @@
 
 Lean startup surface. Read this, then `NOW.md`, ask the operator a few scoping questions, then open only what the task needs.
 
+## Use When
+
+- cold-starting into KYOTA from the repo root or a fresh agent session
+- deciding which narrower contracts or entities to load next
+- recovering the default startup sequence without reading the whole wiki
+
+## Do Not Load When
+
+- a tighter task contract in `kyota-wiki/tasks/` already fixes the scope
+- the single-prompt website workflow fully covers the task
+- the task is already deep inside a bounded execution slice and this file would only repeat startup guidance
+
 ## Startup order
 1. Read [`NOW.md`](./NOW.md) — current state, blockers, next actions.
 2. If the task is a routine `fidesz-sapka-site/` edit and the prompt is concrete, follow [`schema/fidesz_sapka_single_prompt_workflow.md`](./schema/fidesz_sapka_single_prompt_workflow.md) and skip the clarification loop.
-3. Otherwise, ask the operator 1-3 short questions about what they are thinking about, desired outcome, and exclusions.
+3. Otherwise, create a context-selection record per [`schema/context_selection_contract.md`](./schema/context_selection_contract.md): goal, exclusions, budget, selected context, omitted context, execution pattern, verify method.
 4. Decide `BUDGET`: `tight`, `standard`, or `large`.
 5. `SELECT` only the entities, prompt schemas, and raw sources the task needs.
-6. `GENERATE` after selection is complete.
+6. If the task is non-trivial Codex repo work, load [`entities/codex_memory_core.md`](./entities/codex_memory_core.md).
+7. If model coordination or OpenAI product behavior matters, load [`schema/multi_model_operating_contract.md`](./schema/multi_model_operating_contract.md) and [`entities/openai_chatgpt_codex_operating_notes.md`](./entities/openai_chatgpt_codex_operating_notes.md).
+8. `GENERATE` after selection is complete.
 
 ## Core method
 
@@ -29,9 +43,14 @@ Use that fast path only within the bounds of [`schema/fidesz_sapka_single_prompt
 ## Canonical files
 - [`NOW.md`](./NOW.md) — current state (replaces the old append-only `log.md`).
 - [`schema/kyota_agent_schemas.md`](./schema/kyota_agent_schemas.md) — modular prompt library for JIT tool loading, RCI, deterministic reflectors, formal verification gates.
+- [`schema/context_selection_contract.md`](./schema/context_selection_contract.md) — required record for goal, exclusions, selected context, omitted context, execution pattern, and verification.
+- [`schema/multi_model_operating_contract.md`](./schema/multi_model_operating_contract.md) — file-first rules for Claude, Codex, ChatGPT-native features, and future OpenAI API lanes.
+- [`entities/codex_memory_core.md`](./entities/codex_memory_core.md) — compact default Codex brain: small standing core, retrieval triggers, and durable workflow-memory rules.
 - [`schema/research_protocol.md`](./schema/research_protocol.md) — source-of-truth and ingestion rules.
 - [`schema/fidesz_sapka_single_prompt_workflow.md`](./schema/fidesz_sapka_single_prompt_workflow.md) — one-prompt fast path for bounded `fidesz-sapka-site/` changes.
 - [`schema/version_control_workflow.md`](./schema/version_control_workflow.md) — inferred git workflow for branch, PR, and merge practice in this repo.
+- [`tasks/kyota-architecture-evolution.md`](./tasks/kyota-architecture-evolution.md) — current roadmap for workflow evolution; tactical until proven stable enough for `schema/`.
+- [`tasks/codex-frontier-source-program.md`](./tasks/codex-frontier-source-program.md) — watchlist and admission rules for high-value Codex, agent, and memory sources.
 
 ## Registries
 - [`entities/index.md`](./entities/index.md) — operational knowledge entities.
@@ -43,4 +62,5 @@ Use that fast path only within the bounds of [`schema/fidesz_sapka_single_prompt
 - Treat `/schema/` as the only normative rules layer.
 - Prefer targeted entity updates over duplicating guidance.
 - Load prompt fragments just in time; unload after the task ends.
+- Make omitted context explicit for non-trivial tasks; intentional non-loading is part of the workflow contract.
 - Update `NOW.md` in place when current state changes — do not append a new record below the old one.
