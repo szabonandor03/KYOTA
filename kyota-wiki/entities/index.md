@@ -23,7 +23,7 @@ Read `../index.md` and `../NOW.md` first, then open only the smallest set of ent
 - [recursive_criticize_improve.md](./recursive_criticize_improve.md) - Explicit critique-refine chains for constraint-heavy reasoning and self-healing drafts.
 - [shaughnessy_graphic_designer.md](./shaughnessy_graphic_designer.md) - Shaughnessy's professional/creative boundary: master the rote work to earn the right to unconventional design moves.
 - [specialist_playbook.md](./specialist_playbook.md) - Specialist quickstart: startup flow, slice-selection heuristics, VERIFY evidence standards, report shape.
-- [spl_declarative_context.md](./spl_declarative_context.md) - Budgeted `BUDGET -> SELECT -> GENERATE` workflow for context assembly.
+- [spl_declarative_context.md](./spl_declarative_context.md) - Operator-guided `ASK -> BUDGET -> SELECT -> GENERATE` workflow for context assembly.
 - [vignelli_canon.md](./vignelli_canon.md) - Vignelli's foundational aesthetic discipline (semantics, syntactics, pragmatics, discipline, timelessness) for KYOTA interface philosophy.
 - [materiality_and_dematerialization.md](./materiality_and_dematerialization.md) - UX strategies countering digital interface dematerialization through packaging and tactile engagement.
 - [typographic_rhythm_and_feeling.md](./typographic_rhythm_and_feeling.md) - Treating typography as active structural objects representing emotion and rhythm rather than passive text.

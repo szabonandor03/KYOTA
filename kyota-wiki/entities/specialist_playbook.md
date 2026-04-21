@@ -1,7 +1,7 @@
 # Specialist Playbook
 
 ## Purpose
-Operational quickstart for any KYOTA specialist agent: startup flow, slice-selection heuristics, VERIFY evidence standards, report shape. Read this after `../index.md` and `../NOW.md` whenever the task is non-routine.
+Operational quickstart for any KYOTA specialist agent: startup flow, operator-intake before context selection, slice-selection heuristics, VERIFY evidence standards, report shape. Read this after `../index.md` and `../NOW.md` whenever the task is non-routine.
 
 ## Canonical Authority
 - Normative rules: [`../schema/`](../schema/) files.
@@ -12,10 +12,12 @@ Operational quickstart for any KYOTA specialist agent: startup flow, slice-selec
 1. Read [`../index.md`](../index.md).
 2. Read [`../NOW.md`](../NOW.md) — active work, blockers, next actions, recent decisions.
 3. Read [`../schema/research_protocol.md`](../schema/research_protocol.md) before any ingest or new-source browsing.
-4. Set `BUDGET` (`tight` / `standard` / `large`).
-5. `SELECT` only the entity pages, prompt fragments, and raw sources the task needs.
-6. Choose execution pattern: direct execution, explicit RCI, deterministic reflector, or formal-gated tool use.
-7. `GENERATE` after selection is complete.
+4. If the task is a concrete `fidesz-sapka-site/` edit, follow [`../schema/fidesz_sapka_single_prompt_workflow.md`](../schema/fidesz_sapka_single_prompt_workflow.md) and skip clarification unless it triggers escalation.
+5. Otherwise, ask the operator 1-3 short questions about what they are thinking about, desired outcome, and exclusions.
+6. Set `BUDGET` (`tight` / `standard` / `large`).
+7. `SELECT` only the entity pages, prompt fragments, and raw sources the task needs.
+8. Choose execution pattern: direct execution, explicit RCI, deterministic reflector, or formal-gated tool use.
+9. `GENERATE` after selection is complete.
 
 ## VERIFY Evidence Standards
 Non-trivial changes should not be called done without deterministic evidence cited in the reply. What counts:
