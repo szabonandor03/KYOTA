@@ -1,17 +1,27 @@
 # KYOTA Startup
 
-Lean startup surface. Read this, then `NOW.md`, then open only what the task needs.
+Lean startup surface. Read this, then `NOW.md`, ask the operator a few scoping questions, then open only what the task needs.
 
 ## Startup order
 1. Read [`NOW.md`](./NOW.md) — current state, blockers, next actions.
-2. Decide `BUDGET`: `tight`, `standard`, or `large`.
-3. `SELECT` only the entities, prompt schemas, and raw sources the task needs.
-4. `GENERATE` after selection is complete.
+2. Ask the operator 1-3 short questions about what they are thinking about, desired outcome, and exclusions.
+3. Decide `BUDGET`: `tight`, `standard`, or `large`.
+4. `SELECT` only the entities, prompt schemas, and raw sources the task needs.
+5. `GENERATE` after selection is complete.
+
+## Core method
+
+```text
+ASK -> BUDGET -> SELECT -> GENERATE
+```
+
+Selection happens after operator intake, not before. The point is to load context based on declared intent instead of broad repo guessing.
 
 ## Canonical files
 - [`NOW.md`](./NOW.md) — current state (replaces the old append-only `log.md`).
 - [`schema/kyota_agent_schemas.md`](./schema/kyota_agent_schemas.md) — modular prompt library for JIT tool loading, RCI, deterministic reflectors, formal verification gates.
 - [`schema/research_protocol.md`](./schema/research_protocol.md) — source-of-truth and ingestion rules.
+- [`schema/version_control_workflow.md`](./schema/version_control_workflow.md) — inferred git workflow for branch, PR, and merge practice in this repo.
 
 ## Registries
 - [`entities/index.md`](./entities/index.md) — operational knowledge entities.
