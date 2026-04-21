@@ -91,7 +91,7 @@ Scenario: an agent is adding a new operational entity page that must follow the 
 6. **Report with evidence.** Cite both the RCI outcome (`CRITIQUE_CLEAN` or flaws resolved) and the reflector outcome (registry clean) in the reply.
 
 ## Budget and JIT Integration
-- Pattern choice happens inside the `BUDGET -> SELECT -> GENERATE` sequence from [`./spl_declarative_context.md`](./spl_declarative_context.md). Pick the pattern before you load prompt fragments or tool schemas.
+- Pattern choice happens inside the `ASK -> BUDGET -> SELECT -> GENERATE` sequence from [`./spl_declarative_context.md`](./spl_declarative_context.md). Pick the pattern after operator intake and before you load prompt fragments or tool schemas.
 - Load only the modules the chosen pattern needs; unload them when the execution tick reaches terminal state. See [`./jit_tool_loading.md`](./jit_tool_loading.md).
 - If the task splits cleanly, each subtask can pick its own pattern. Do not apply a single heavy loop uniformly to a multi-part task.
 
