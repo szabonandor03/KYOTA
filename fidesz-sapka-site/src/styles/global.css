@@ -734,29 +734,6 @@ canvas.glitch-noise {
   );
 }
 
-:root[data-browser="instagram"] .archive-shell,
-:root[data-browser="instagram"] .drive-toolbar,
-:root[data-browser="instagram"] .drive-toolbar__mark,
-:root[data-browser="instagram"] .glitch-text,
-:root[data-browser="instagram"] .drive-row__name,
-:root[data-browser="instagram"] .drive-row__meta {
-  filter: none;
-  animation: none;
-}
-
-:root[data-browser="instagram"] .drive-toolbar {
-  backdrop-filter: none;
-}
-
-:root[data-browser="instagram"] .drive-toolbar__mark-layer--red,
-:root[data-browser="instagram"] .drive-toolbar__mark-layer--blue,
-:root[data-browser="instagram"] .glitch-text::before,
-:root[data-browser="instagram"] .glitch-text::after,
-:root[data-browser="instagram"] canvas.glitch-noise,
-:root[data-browser="instagram"] .glitch-vignette {
-  display: none !important;
-}
-
 
 @media (max-width: 640px) {
   .archive-shell {
@@ -1010,4 +987,5 @@ canvas.glitch-noise {
 :root[data-theme="dark"] .drive-row { border-bottom-color: rgba(255, 255, 255, 0.04); }
 
 :root[data-theme="dark"] .detail-card__meta div { border-top-color: rgba(255, 255, 255, 0.06); }
+
 

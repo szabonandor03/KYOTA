@@ -26,11 +26,7 @@ const {
       (function () {
         var s = localStorage.getItem("fs-theme");
         var d = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        var ua = navigator.userAgent || "";
         document.documentElement.dataset.theme = s || (d ? "dark" : "light");
-        if (/Instagram/i.test(ua)) {
-          document.documentElement.dataset.browser = "instagram";
-        }
       })();
     </script>
   </head>
@@ -108,27 +104,10 @@ const {
 
 <script is:inline>
   (() => {
-    const html = document.documentElement;
-    const inInstagram = html.dataset.browser === "instagram";
+    const root = document.body;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    // Theme toggle
-    const toggleBtn = document.getElementById("theme-toggle");
-    if (toggleBtn) {
-      const sync = () => {
-        const dark = html.dataset.theme === "dark";
-        toggleBtn.textContent = dark ? "light" : "dark";
-      };
-      sync();
-      toggleBtn.addEventListener("click", () => {
-        const next = html.dataset.theme === "dark" ? "light" : "dark";
-        html.dataset.theme = next;
-        localStorage.setItem("fs-theme", next);
-        sync();
-      });
-    }
-
-    if (reduced || inInstagram) return;
+    if (reduced) return;
 
     // Animated canvas grain — 256×256 pixelated, ~20fps
     const canvas = document.querySelector("canvas.glitch-noise");
@@ -156,6 +135,22 @@ const {
     }
 
     const rnd = (a, b) => a + Math.random() * (b - a);
+
+    // Theme toggle
+    const toggleBtn = document.getElementById("theme-toggle");
+    if (toggleBtn) {
+      const sync = () => {
+        const dark = document.documentElement.dataset.theme === "dark";
+        toggleBtn.textContent = dark ? "light" : "dark";
+      };
+      sync();
+      toggleBtn.addEventListener("click", () => {
+        const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem("fs-theme", next);
+        sync();
+      });
+    }
 
     // Micro-flicker — rare, brief luminance flash like a tube warming up
     const flickEl = document.createElement("div");
